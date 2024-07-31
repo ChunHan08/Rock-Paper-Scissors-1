@@ -6,14 +6,16 @@ optionImages = document.querySelectorAll(".option_image");
 
 optionImages.forEach((image, index) => {
   image.addEventListener("click", () => {
-    gameContainer.classList.add("disabled");
-    userResult.src = `images/${index}.png`;
-    userResult.alt = `You chose ${index}`;
-    cpuResult.src = `images/${randomNumber()}.png`;
-    cpuResult.alt = `CPU chose ${randomNumber()}`;
-    result.innerText = getResult(index, randomNumber());
-    setTimeout(() => {
-      gameContainer.classList.remove("disabled");
-    }, 1000);
+    image.classList.add("active");
+
+    optionImages.forEach((image2, index) => {
+      index !==2 && image2.classList.remove("active");
+        });
+    let imageSrc = e.target.querySelector("img").src;
+    userResult.src = imageSrc;
+    console.log(imageSrc);
+
+    let randomNumber = Math.floor(Math.random() * 3);
+    let cpuImages = ["images.png"]
   });
 });
